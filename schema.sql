@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS notes(
+    id SERIAL PRIMARY KEY,
+    title TEXT NULL,
+    body TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+)
