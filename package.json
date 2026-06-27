@@ -1,0 +1,30 @@
+{
+  "name": "mini-vault",
+  "version": "1.0.0",
+  "description": "A secure, minimal note-taking REST API backed by PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "express",
+    "postgres",
+    "notes-api",
+    "vault",
+    "backend"
+  ],
+  "author": "MuhammadShakkeer2030 <simplefight90@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
