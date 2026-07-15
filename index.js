@@ -14,12 +14,31 @@ app.get('/notes', async (req, res) => {
   }
 });
 
+app.get('/notes/search', async (req, res) => {
+  const { q } = req.query
+
+  if (!q || q.trim() === '') {
+    return res.json({ error: "required search query" })
+  }
+  try {
+    const result = await pool.query(
+      `SELECT * FROM notes
+      WHERE title ILIKE $1`,
+      [`%${q}%`]
+    )
+    res.json(result.rows)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: "search failed" })
+  }
+})
+
 app.get('/notes/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query('SELECT * FROM notes WHERE id = $1', [id]);
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Note not found' });
+      return res.status(404).json({ error: 'This item not found' });
     }
     res.json(result.rows[0]);
   } catch (err) {
