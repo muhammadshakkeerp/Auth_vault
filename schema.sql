@@ -1,6 +1,14 @@
-CREATE TABLE IF NOT EXISTS notes(
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY, 
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS notes (
     id SERIAL PRIMARY KEY,
-    title TEXT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
     body TEXT,
     created_at TIMESTAMP DEFAULT NOW()
-)
+);
